@@ -59,17 +59,20 @@ En un entorno de producción o API real, lo comprobaría de las siguientes dos m
   "title": "Título actualizado con PUT",
   "id": 1
 }
+```
 **Respuesta completa de PATCH /posts/1 (body enviado: solo title):**
+```json
 {
   "userId": 1,
   "id": 1,
-  "title": "Titulo corregido",
-  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+  "title": "Título corregido",
+  "body": "quia et suscipit\nsuscipit recusandae ..."
 }
+```
 
 **Diferencia que encontré:**
 Con PUT, el servidor reemplazó la totalidad del recurso existente por el cuerpo enviado. Al haber enviado únicamente el campo title, los demás campos originales (userId y body) fueron eliminados del objeto devuelto.
 Por el contrario, con PATCH, el servidor realizó una actualización parcial. Modificó únicamente la propiedad title y conservó intactos el resto de los datos del recurso (userId y body)
 
 **Cuál usaría para corregir un error de escritura en un solo campo, y por qué:**
-Usaría PATCH[cite: 2]. Es el método diseñado específicamente para modificaciones parciales[cite: 2]. Si utilizara PUT para corregir solo un campo, estaría obligado a enviar siempre la totalidad de los datos del recurso para evitar que los campos omitidos sean borrados o sobrescritos.
+Usaría PATCH. Es el método diseñado específicamente para modificaciones parciales. Si utilizara PUT para corregir solo un campo, estaría obligado a enviar siempre la totalidad de los datos del recurso para evitar que los campos omitidos sean borrados o sobrescritos.
