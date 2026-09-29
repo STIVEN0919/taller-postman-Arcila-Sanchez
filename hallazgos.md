@@ -10,7 +10,7 @@
 | 4 | POST /posts     | 201             |    201          |   s1       |
 | 5 | PUT /posts/1    | 200             |    200          |   si       |
 | 6 | PATCH /posts/1  | 200             |    200          |   si       |
-| 7 | DELETE /posts/1 | 200             |                 |            |
+| 7 | DELETE /posts/1 | 200             |    200          |   si       |
 
 ## Tarea 4: GET de un recurso y de una colección
 
