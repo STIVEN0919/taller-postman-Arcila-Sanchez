@@ -7,9 +7,9 @@
 | 1 | GET /posts/1    | 200             |    200          |   si       |
 | 2 | GET /posts      | 200             |    200          |   si       |
 | 3 | GET /posts/9999 | 404             |    404          |   si       |
-| 4 | POST /posts     | 201             |                 |            |
-| 5 | PUT /posts/1    | 200             |                 |            |
-| 6 | PATCH /posts/1  | 200             |                 |            |
+| 4 | POST /posts     | 201             |    201          |   s1       |
+| 5 | PUT /posts/1    | 200             |    200          |   si       |
+| 6 | PATCH /posts/1  | 200             |    200          |   si       |
 | 7 | DELETE /posts/1 | 200             |                 |            |
 
 ## Tarea 4: GET de un recurso y de una colección
@@ -50,3 +50,26 @@ Ocurre porque JSONPlaceholder es una API falsa (mock API) destinada únicamente 
 En un entorno de producción o API real, lo comprobaría de las siguientes dos maneras:
 1. **Mediante una petición GET:** Realizando una petición `GET /posts/101` inmediatamente después para consultar si el recurso existe y devuelve el mismo cuerpo de datos que envié.
 2. **Consultando la base de datos:** Verificando directamente en el motor de base de datos o almacenamiento persistente del backend si el registro fue insertado con éxito.
+
+## Tarea 7: PUT vs PATCH
+
+**Respuesta completa de PUT /posts/1 (body enviado: solo title):**
+```json
+{
+  "title": "Título actualizado con PUT",
+  "id": 1
+}
+**Respuesta completa de PATCH /posts/1 (body enviado: solo title):**
+{
+  "userId": 1,
+  "id": 1,
+  "title": "Titulo corregido",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+
+**Diferencia que encontré:**
+Con PUT, el servidor reemplazó la totalidad del recurso existente por el cuerpo enviado. Al haber enviado únicamente el campo title, los demás campos originales (userId y body) fueron eliminados del objeto devuelto.
+Por el contrario, con PATCH, el servidor realizó una actualización parcial. Modificó únicamente la propiedad title y conservó intactos el resto de los datos del recurso (userId y body)
+
+**Cuál usaría para corregir un error de escritura en un solo campo, y por qué:**
+Usaría PATCH[cite: 2]. Es el método diseñado específicamente para modificaciones parciales[cite: 2]. Si utilizara PUT para corregir solo un campo, estaría obligado a enviar siempre la totalidad de los datos del recurso para evitar que los campos omitidos sean borrados o sobrescritos.
