@@ -76,3 +76,17 @@ Por el contrario, con PATCH, el servidor realizó una actualización parcial. Mo
 
 **Cuál usaría para corregir un error de escritura en un solo campo, y por qué:**
 Usaría PATCH. Es el método diseñado específicamente para modificaciones parciales. Si utilizara PUT para corregir solo un campo, estaría obligado a enviar siempre la totalidad de los datos del recurso para evitar que los campos omitidos sean borrados o sobrescritos.
+
+## Tarea 10: Valores límite
+
+**Id más alto que devuelve 200:** 100 (`GET /posts/100`)
+
+**Primer id que devuelve 404:** 101 (`GET /posts/101`)
+
+**¿Cómo se llama este tipo de caso de prueba?**
+Análisis de valores límite (boundary value analysis).
+
+**¿Por qué se dice que los defectos se concentran ahí?**
+Los errores de lógica suelen aparecer en los bordes: un `<` en vez de `<=`, o contar desde 0 en lugar de desde 1, desplaza el límite en un elemento. Con un valor intermedio como 50 esos errores no se ven, pero al probar 100 (último válido) y 101 (primero inválido) sí.
+
+Fuente: (enlace)
