@@ -128,8 +128,6 @@ Evidencias: `evidencias/09-limite-100.png` y `evidencias/10-limite-101.png`.
 **Cómo deduje la estructura de la URL anidada:**
 Al revisar /comments vi que cada comentario trae un campo `postId`, que indica a qué post pertenece. Con eso supuse que los comentarios "cuelgan" de un post y que la URL seguiría el patrón `/recurso/id/subrecurso`. Probé `/posts/1/comments` y devolvió únicamente los comentarios con `postId: 1`, así que la ruta equivale a pedir los comentarios del post que aparece en medio de la URL.
 
-Evidencia: `evidencias/11-ruta-anidada.png`
-
 ## Tareas 12 y 13: Pruebas automáticas (petición `01 GET post 1`)
 
 Las cuatro pruebas están en la pestaña Scripts → After response de la petición 1 y pasan (4/4).
