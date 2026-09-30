@@ -107,12 +107,28 @@ Evidencias: `evidencias/09-limite-100.png` y `evidencias/10-limite-101.png`.
 
 ## Tarea 11: Otros recursos y ruta anidada
 
-**[COMPLETAR: después de probar en Postman]**
+**Recurso 1: /users**
+- Código de estado: 200 OK
+- Cantidad de elementos: 10 usuarios
+- Campos: `id`, `name`, `username`, `email`, `address`, `phone`, `website` y `company`
+- Diferencia con /posts: aquí algunos campos contienen otros objetos; por ejemplo, `address` trae `street`, `suite`, `city`, `zipcode` y `geo`.
 
-- Recurso 1 probado (por ejemplo `/users`): código, cantidad de elementos y campos.
-- Recurso 2 probado (por ejemplo `/comments`): código, cantidad de elementos y campos.
-- Ruta anidada (por ejemplo `/posts/1/comments`): código y qué devuelve.
-- Cómo deduje la estructura de la URL anidada:
+**Recurso 2: /comments**
+- Código de estado: 200 OK
+- Cantidad de elementos: 500 comentarios
+- Tamaño de la respuesta: 40.77 KB (la de /posts fue de 8.02 KB)
+- Campos: `postId`, `id`, `name`, `email` y `body`
+
+**Ruta anidada: /posts/1/comments**
+- Código de estado: 200 OK
+- Cantidad de elementos: 5 comentarios
+- Tamaño de la respuesta: 1.72 KB
+- Qué devuelve: solo los comentarios del post 1. Todos tienen `"postId": 1` y el primero es el mismo primer comentario que aparece en /comments.
+
+**Cómo deduje la estructura de la URL anidada:**
+Al revisar /comments vi que cada comentario trae un campo `postId`, que indica a qué post pertenece. Con eso supuse que los comentarios "cuelgan" de un post y que la URL seguiría el patrón `/recurso/id/subrecurso`. Probé `/posts/1/comments` y devolvió únicamente los comentarios con `postId: 1`, así que la ruta equivale a pedir los comentarios del post que aparece en medio de la URL.
+
+Evidencia: `evidencias/11-ruta-anidada.png`
 
 ## Tareas 12 y 13: Pruebas automáticas (petición `01 GET post 1`)
 
